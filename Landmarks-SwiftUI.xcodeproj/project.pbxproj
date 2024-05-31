@@ -16,6 +16,7 @@
 		676054D42C08893E002CAA0D /* Landmarks_SwiftUIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676054D32C08893E002CAA0D /* Landmarks_SwiftUIUITestsLaunchTests.swift */; };
 		676054E12C0894F4002CAA0D /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676054E02C0894F4002CAA0D /* CircleImage.swift */; };
 		676054E32C089B04002CAA0D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676054E22C089B04002CAA0D /* MapView.swift */; };
+		6765758D2C0973B000759D07 /* landmarkData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6765758C2C0973B000759D07 /* landmarkData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		676054D32C08893E002CAA0D /* Landmarks_SwiftUIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmarks_SwiftUIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		676054E02C0894F4002CAA0D /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		676054E22C089B04002CAA0D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6765758C2C0973B000759D07 /* landmarkData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = landmarkData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		676054B52C088938002CAA0D /* Landmarks-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				6765758C2C0973B000759D07 /* landmarkData.json */,
 				676054B62C088938002CAA0D /* Landmarks_SwiftUIApp.swift */,
 				676054B82C088938002CAA0D /* ContentView.swift */,
 				676054E02C0894F4002CAA0D /* CircleImage.swift */,
@@ -239,6 +242,7 @@
 			files = (
 				676054BE2C08893D002CAA0D /* Preview Assets.xcassets in Resources */,
 				676054BB2C08893D002CAA0D /* Assets.xcassets in Resources */,
+				6765758D2C0973B000759D07 /* landmarkData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
