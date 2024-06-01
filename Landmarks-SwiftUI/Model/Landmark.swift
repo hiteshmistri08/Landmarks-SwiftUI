@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreLocation
+import MapKit
 
 struct Landmark: Hashable, Codable, Identifiable {
     var id: Int
@@ -24,6 +25,10 @@ struct Landmark: Hashable, Codable, Identifiable {
 
 
     private var coordinates: Coordinates
+    var coordinateRegion: MKCoordinateRegion {
+        MKCoordinateRegion(center: locationCoordinate, latitudinalMeters: 0.2, longitudinalMeters: 0.2)
+    }
+    
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
             latitude: coordinates.latitude,
