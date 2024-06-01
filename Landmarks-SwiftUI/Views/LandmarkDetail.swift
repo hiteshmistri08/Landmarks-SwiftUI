@@ -11,7 +11,7 @@ struct LandmarkDetail: View {
     var landmark: Landmark
     
     var body: some View {
-        VStack {
+        ScrollView {
             MapView(region: landmark.coordinateRegion)
                 .frame(height: 300)
             
@@ -40,8 +40,6 @@ struct LandmarkDetail: View {
                 Text(landmark.description)
             }
             .padding()
-            
-            Spacer()
         }
     }
 }
