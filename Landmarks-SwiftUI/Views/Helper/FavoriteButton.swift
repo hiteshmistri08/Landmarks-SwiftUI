@@ -16,7 +16,7 @@ struct FavoriteButton: View {
         } label: {
             Label("Toggel Favorite", systemImage: isSet ? "star.fill" : "star")
                 .labelStyle(.iconOnly)
-                .foregroundStyle(.yellow)
+                .foregroundStyle(isSet ? .yellow : .gray)
         }
     }
 }
