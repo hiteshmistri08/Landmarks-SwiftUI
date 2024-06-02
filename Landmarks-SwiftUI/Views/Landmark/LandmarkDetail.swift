@@ -11,11 +11,11 @@ struct LandmarkDetail: View {
     @EnvironmentObject private var modelData: ModelData
     var landmark: Landmark
     
-    var landmarkIndex: Int {
+    private var landmarkIndex: Int {
         modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
     }
 
-    var isFavorite: Binding<Bool> {
+    private var isFavorite: Binding<Bool> {
         Binding {
             modelData.landmarks[landmarkIndex].isFavorite
         } set: {

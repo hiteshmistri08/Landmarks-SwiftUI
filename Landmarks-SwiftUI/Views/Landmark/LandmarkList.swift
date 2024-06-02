@@ -9,10 +9,10 @@ import SwiftUI
 
 struct LandmarkList: View {
     
-    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject private var modelData: ModelData
     @State private var showFavoritesOnly: Bool = false
     
-    var filteredLandmarks: [Landmark] {
+    private var filteredLandmarks: [Landmark] {
         modelData.landmarks.filter{ !showFavoritesOnly || $0.isFavorite }
     }
     
@@ -26,6 +26,7 @@ struct LandmarkList: View {
                 ForEach(filteredLandmarks) { landmrak in
                     NavigationLink {
                         LandmarkDetail(landmark: landmrak)
+                            .environmentObject(modelData)
                     } label: {
                         LandmarkRow(landmark: landmrak)
                     }
