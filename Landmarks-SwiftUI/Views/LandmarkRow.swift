@@ -27,10 +27,12 @@ struct LandmarkRow: View {
         .padding()
     }
 }
+
 /*
 struct LandmarkRow_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkRow(landmark:  landmarks[0])
+        let landmark = ModelData().landmarks[0]
+        LandmarkRow(landmark:  landmark)
     }
 }
 */
