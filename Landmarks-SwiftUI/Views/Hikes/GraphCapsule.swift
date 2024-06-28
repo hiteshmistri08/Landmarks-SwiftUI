@@ -30,11 +30,6 @@ struct GraphCapsule: View {
     }
 }
 
-
-func magnitude(of range: Range<Double>) -> Double {
-    range.upperBound - range.lowerBound
-}
-
 struct GraphCapsule_Previews: PreviewProvider {
     static var previews: some View {
         GraphCapsule(
