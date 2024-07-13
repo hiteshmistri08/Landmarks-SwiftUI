@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct HikeView: View {
+    var hike: Hike
     @State private var showDetail: Bool = false
+    
     var body: some View {
         HStack {
-            Image(systemName: "star.fill")
-                
+            HikeGraph(hike: hike, path: \.elevation)
+                .frame(width: 50, height: 30)
+
             VStack(alignment: .leading) {
-                Text("Lonesome Ride Trail")
-                    .font(.title2)
-                Text("4.5 km")
-                    .font(.subheadline)
+                Text(hike.name)
+                    .font(.headline)
+                Text(hike.distanceText)
             }
             
             Spacer()
@@ -36,6 +38,10 @@ struct HikeView: View {
 
 struct HikeView_Previews: PreviewProvider {
     static var previews: some View {
-        HikeView()
+        VStack {
+            HikeView(hike: ModelData().hikes[0])
+                .padding()
+            Spacer()
+        }
     }
 }
