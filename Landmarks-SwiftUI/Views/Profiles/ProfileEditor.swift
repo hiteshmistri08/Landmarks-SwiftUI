@@ -23,6 +23,13 @@ struct ProfileEditor: View {
             Toggle(isOn: $profileData.prefersNotifications) {
                 Text("Enable Notifications")
             }
+            
+            Picker("Seasonal Photo", selection: $profileData.seasonalPhoto) {
+                ForEach(Profile.Season.allCases) { season in
+                    Text(season.rawValue)
+                        .tag(season)
+                }
+            }
         }
     }
 }
