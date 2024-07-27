@@ -19,6 +19,10 @@ struct ProfileEditor: View {
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.trailing)
             }
+            
+            Toggle(isOn: $profileData.prefersNotifications) {
+                Text("Enable Notifications")
+            }
         }
     }
 }
