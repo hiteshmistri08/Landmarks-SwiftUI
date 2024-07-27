@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ProfileEditor: View {
-    @Binding var profileData: Profile
+    @Binding var profile: Profile
     
     var dateRange: ClosedRange<Date> {
-        let min = Calendar.current.date(byAdding: .year, value: -1, to: profileData.goalDate)!
-        let max = Calendar.current.date(byAdding: .year, value: 1, to: profileData.goalDate)!
+        let min = Calendar.current.date(byAdding: .year, value: -1, to: profile.goalDate)!
+        let max = Calendar.current.date(byAdding: .year, value: 1, to: profile.goalDate)!
         return min...max
     }
     
@@ -21,23 +21,23 @@ struct ProfileEditor: View {
             HStack {
                 Text("Username")
                 Spacer()
-                TextField("g_kumar", text: $profileData.username)
+                TextField("g_kumar", text: $profile.username)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.trailing)
             }
             
-            Toggle(isOn: $profileData.prefersNotifications) {
+            Toggle(isOn: $profile.prefersNotifications) {
                 Text("Enable Notifications")
             }
             
-            Picker("Seasonal Photo", selection: $profileData.seasonalPhoto) {
+            Picker("Seasonal Photo", selection: $profile.seasonalPhoto) {
                 ForEach(Profile.Season.allCases) { season in
                     Text(season.rawValue)
                         .tag(season)
                 }
             }
             
-            DatePicker(selection: $profileData.goalDate, in: dateRange, displayedComponents: .date) {
+            DatePicker(selection: $profile.goalDate, in: dateRange, displayedComponents: .date) {
                 Text("Goal Date")
             }
         }
@@ -46,6 +46,6 @@ struct ProfileEditor: View {
 
 struct ProfileEditor_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditor(profileData: .constant(.default))
+        ProfileEditor(profile: .constant(.default))
     }
 }
