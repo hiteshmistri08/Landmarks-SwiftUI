@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileHost: View {
+    @Environment(\.editMode) var editMode
     @State private var draftProfile = Profile.default
     
     var body: some View {
@@ -21,5 +22,6 @@ struct ProfileHost: View {
 struct ProfileHost_Previews: PreviewProvider {
     static var previews: some View {
         ProfileHost()
+            .environmentObject(ModelData())
     }
 }
