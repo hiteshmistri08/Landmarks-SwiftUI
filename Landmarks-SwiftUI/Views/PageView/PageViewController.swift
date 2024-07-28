@@ -20,5 +20,4 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIPageViewController, context: Context) {
         uiViewController.setViewControllers([UIHostingController(rootView: pages[0])], direction: .forward, animated: true)
     }
-    
 }
