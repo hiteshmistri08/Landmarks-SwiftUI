@@ -31,7 +31,10 @@ struct Landmark: Hashable, Codable, Identifiable {
         Image(imageName)
     }
 
-
+    var featureImage: Image? {
+        isFeatured ? Image(imageName + "_feature") : nil
+    }
+    
     private var coordinates: Coordinates
     var coordinateRegion: MKCoordinateRegion {
         MKCoordinateRegion(center: locationCoordinate, latitudinalMeters: 0.2, longitudinalMeters: 0.2)
