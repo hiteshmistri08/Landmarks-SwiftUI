@@ -22,14 +22,16 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIPageViewController, context: Context) {
-        uiViewController.setViewControllers([UIHostingController(rootView: pages[0])], direction: .forward, animated: true)
+        uiViewController.setViewControllers([context.coordinator.controllers[0]], direction: .forward, animated: true)
     }
     
     class Coordinator: NSObject {
         var parent: PageViewController
+        var controllers: [UIViewController] = []
         
         init(parent: PageViewController) {
             self.parent = parent
+            controllers = parent.pages.map{ UIHostingController(rootView: $0) }
         }
     }
 }
