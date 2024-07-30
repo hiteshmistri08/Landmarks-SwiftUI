@@ -16,28 +16,38 @@ struct LandmarkDetail: View {
     }
     
     var body: some View {
-        VStack {
-            CircleImage(image: landmark.image.resizable())
-                .scaledToFill()
-            
-            Text(landmark.name)
-                .font(.headline)
-                .lineLimit(0)
-            
-            Toggle(isOn: $modelData.landmarks[landmarkIndex].isFavorite) {
-                Text("Favorite")
+        ScrollView {
+            VStack {
+                CircleImage(image: landmark.image.resizable())
+                    .scaledToFit()
+                
+                Text(landmark.name)
+                    .font(.headline)
+                    .lineLimit(0)
+                
+                Toggle(isOn: $modelData.landmarks[landmarkIndex].isFavorite) {
+                    Text("Favorite")
+                }
+                
+                Divider()
+                
+                Text(landmark.park)
+                    .font(.caption)
+                    .bold()
+                    .lineLimit(0)
+                
+                Text(landmark.state)
+                    .font(.caption)
+                
+                Divider()
+                
+                MapView(region: landmark.coordinateRegion)
+                    .scaledToFit()
+                
             }
-            
-            Divider()
-            
-            Text(landmark.park)
-                .font(.caption)
-                .bold()
-                .lineLimit(0)
-            
-            Text(landmark.state)
-                .font(.caption)
+            .padding(16)
         }
+        .navigationTitle("Landmarks")
     }
 }
 
