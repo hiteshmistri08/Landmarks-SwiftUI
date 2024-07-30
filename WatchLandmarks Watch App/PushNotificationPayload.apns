@@ -10,6 +10,6 @@
     
     "landmarkIndex": 1,
     
-    "Simulator Target Bundle": "com.test.watchlandmarks.watchkitapp"
+    "Simulator Target Bundle": "com.test.Landmarks-SwiftUI.watchkitapp"
     
 }
