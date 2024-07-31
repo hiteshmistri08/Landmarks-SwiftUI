@@ -17,25 +17,47 @@ struct LandmarkList: View {
     }
     
     var body: some View {
-        NavigationSplitView {
-            List {
-                Toggle(isOn: $showFavoritesOnly) {
-                    Text("Favorites only")
-                }
-                
-                ForEach(filteredLandmarks) { landmrak in
-                    NavigationLink {
-                        LandmarkDetail(landmark: landmrak)
-                            .environmentObject(modelData)
-                    } label: {
-                        LandmarkRow(landmark: landmrak)
+        if #available(macOS 13.0, *) {
+            NavigationSplitView {
+                List {
+                    Toggle(isOn: $showFavoritesOnly) {
+                        Text("Favorites only")
+                    }
+                    
+                    ForEach(filteredLandmarks) { landmrak in
+                        NavigationLink {
+                            LandmarkDetail(landmark: landmrak)
+                                .environmentObject(modelData)
+                        } label: {
+                            LandmarkRow(landmark: landmrak)
+                        }
                     }
                 }
+                .animation(.default, value: filteredLandmarks)
+                .navigationTitle("Landmarks")
+            } detail: {
+                Text("Select a landmark")
             }
-            .animation(.default, value: filteredLandmarks)
-            .navigationTitle("Landmarks")
-        } detail: {
-            Text("Select a landmark")
+        } else {
+            // Fallback on earlier versions
+            NavigationView {
+                List {
+                    Toggle(isOn: $showFavoritesOnly) {
+                        Text("Favorites only")
+                    }
+                    
+                    ForEach(filteredLandmarks) { landmrak in
+                        NavigationLink {
+                            LandmarkDetail(landmark: landmrak)
+                                .environmentObject(modelData)
+                        } label: {
+                            LandmarkRow(landmark: landmrak)
+                        }
+                    }
+                }
+                .animation(.default, value: filteredLandmarks)
+                .navigationTitle("Landmarks")
+            }
         }
     }
 }
