@@ -23,7 +23,6 @@
 		676575912C0976FB00759D07 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676575902C0976FB00759D07 /* ModelData.swift */; };
 		676575962C097EFE00759D07 /* LandmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676575952C097EFE00759D07 /* LandmarkRow.swift */; };
 		676F503B2C2EF99C009315D3 /* HikeGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676F503A2C2EF99C009315D3 /* HikeGraph.swift */; };
-		6772C1732C5A3F2D0026A985 /* MacLandmarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6772C1722C5A3F2D0026A985 /* MacLandmarksApp.swift */; };
 		6772C1752C5A3F2D0026A985 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6772C1742C5A3F2D0026A985 /* ContentView.swift */; };
 		6772C1772C5A3F310026A985 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6772C1762C5A3F310026A985 /* Assets.xcassets */; };
 		6772C17A2C5A3F310026A985 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6772C1792C5A3F310026A985 /* Preview Assets.xcassets */; };
@@ -108,7 +107,6 @@
 		676575952C097EFE00759D07 /* LandmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRow.swift; sourceTree = "<group>"; };
 		676F503A2C2EF99C009315D3 /* HikeGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HikeGraph.swift; sourceTree = "<group>"; };
 		6772C1702C5A3F2D0026A985 /* MacLandmarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacLandmarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6772C1722C5A3F2D0026A985 /* MacLandmarksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacLandmarksApp.swift; sourceTree = "<group>"; };
 		6772C1742C5A3F2D0026A985 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6772C1762C5A3F310026A985 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6772C1792C5A3F310026A985 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 		6772C1712C5A3F2D0026A985 /* MacLandmarks */ = {
 			isa = PBXGroup;
 			children = (
-				6772C1722C5A3F2D0026A985 /* MacLandmarksApp.swift */,
 				6772C1742C5A3F2D0026A985 /* ContentView.swift */,
 				6772C1762C5A3F310026A985 /* Assets.xcassets */,
 				6772C17B2C5A3F310026A985 /* MacLandmarks.entitlements */,
@@ -651,7 +648,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6772C1752C5A3F2D0026A985 /* ContentView.swift in Sources */,
-				6772C1732C5A3F2D0026A985 /* MacLandmarksApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
