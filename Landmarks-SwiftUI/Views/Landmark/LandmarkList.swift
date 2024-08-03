@@ -20,10 +20,6 @@ struct LandmarkList: View {
         if #available(macOS 13.0, *) {
             NavigationSplitView {
                 List {
-                    Toggle(isOn: $showFavoritesOnly) {
-                        Text("Favorites only")
-                    }
-                    
                     ForEach(filteredLandmarks) { landmrak in
                         NavigationLink {
                             LandmarkDetail(landmark: landmrak)
@@ -36,6 +32,17 @@ struct LandmarkList: View {
                 .animation(.default, value: filteredLandmarks)
                 .navigationTitle("Landmarks")
                 .frame(minWidth: 300)
+                .toolbar {
+                    ToolbarItem {
+                        Menu {
+                            Toggle(isOn: $showFavoritesOnly) {
+                                Text("Favorites only")
+                            }
+                        } label: {
+                            Label("Filter", systemImage: "slider.horizontal.3")
+                        }
+                    }
+                }
             } detail: {
                 Text("Select a landmark")
             }
@@ -43,10 +50,6 @@ struct LandmarkList: View {
             // Fallback on earlier versions
             NavigationView {
                 List {
-                    Toggle(isOn: $showFavoritesOnly) {
-                        Text("Favorites only")
-                    }
-                    
                     ForEach(filteredLandmarks) { landmrak in
                         NavigationLink {
                             LandmarkDetail(landmark: landmrak)
@@ -59,6 +62,17 @@ struct LandmarkList: View {
                 .animation(.default, value: filteredLandmarks)
                 .navigationTitle("Landmarks")
                 .frame(minWidth: 300)
+                .toolbar {
+                    ToolbarItem {
+                        Menu {
+                            Toggle(isOn: $showFavoritesOnly) {
+                                Text("Favorites only")
+                            }
+                        } label: {
+                            Label("Filter", systemImage: "slider.horizontal.3")
+                        }
+                    }
+                }
             }
         }
     }
