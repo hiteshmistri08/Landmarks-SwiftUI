@@ -11,9 +11,22 @@ struct LandmarkList: View {
     
     @EnvironmentObject private var modelData: ModelData
     @State private var showFavoritesOnly: Bool = false
+    @State private var filter = FilterCategory.all
+    
+    enum FilterCategory: String, CaseIterable, Identifiable {
+        case all = "All"
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+        
+        var id: FilterCategory { self }
+    }
     
     private var filteredLandmarks: [Landmark] {
-        modelData.landmarks.filter{ !showFavoritesOnly || $0.isFavorite }
+        modelData.landmarks.filter{ landmark in
+            (!showFavoritesOnly || landmark.isFavorite)
+            && (filter == .all || filter.rawValue == landmark.category.rawValue)
+        }
     }
     
     var body: some View {
