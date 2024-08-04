@@ -12,6 +12,16 @@ struct MapView: View {
 //    var coordinate: CLLocationCoordinate2D
     @State var region: MKCoordinateRegion
     
+    enum Zoom: String, CaseIterable, Identifiable {
+        case near = "Near"
+        case medium = "Medium"
+        case far = "Far"
+        
+        var id: Zoom {
+            self
+        }
+    }
+    
     var body: some View {
         Map(coordinateRegion: $region)
     }
@@ -27,10 +37,10 @@ struct MapView: View {
     */
 }
 
-/*
+///*
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(region: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 34.011_286, longitude: -116.166_868), span: .init(latitudeDelta: 0.2, longitudeDelta: 0.2)))
     }
 }
-*/
+//*/
