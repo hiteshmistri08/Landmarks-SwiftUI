@@ -77,6 +77,7 @@ struct LandmarkList: View {
             } detail: {
                 Text("Select a landmark")
             }
+            .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
         } else {
             // Fallback on earlier versions
             NavigationView {
@@ -113,6 +114,7 @@ struct LandmarkList: View {
                     }
                 }
             }
+            .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
         }
     }
 }
