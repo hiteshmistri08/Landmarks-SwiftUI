@@ -10,7 +10,16 @@ import MapKit
 
 struct MapView: View {
 //    var coordinate: CLLocationCoordinate2D
-    @State var region: MKCoordinateRegion
+    var region: MKCoordinateRegion {
+        didSet {
+            regionWithZoom = MKCoordinateRegion(center: region.center, latitudinalMeters: delta, longitudinalMeters: delta)
+        }
+    }
+    
+    @State var regionWithZoom: MKCoordinateRegion = MKCoordinateRegion(center: .init(latitude: 0.1, longitude: 1.2), latitudinalMeters: 0.2, longitudinalMeters: 0.2)
+    
+    @AppStorage("MapView.zoom")
+    private var zoom: Zoom = .medium
     
     enum Zoom: String, CaseIterable, Identifiable {
         case near = "Near"
@@ -22,8 +31,19 @@ struct MapView: View {
         }
     }
     
+    var delta: CLLocationDegrees {
+        switch zoom {
+        case .near:
+            return 0.02
+        case .medium:
+            return 0.2
+        case .far:
+            return 2
+        }
+    }
+    
     var body: some View {
-        Map(coordinateRegion: $region)
+        Map(coordinateRegion: $regionWithZoom)
     }
     
     
