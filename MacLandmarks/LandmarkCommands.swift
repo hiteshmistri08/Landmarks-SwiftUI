@@ -12,3 +12,14 @@ struct LandmarkCommands: Commands {
         SidebarCommands()
     }
 }
+
+struct SelectedLandmarkKey: FocusedValueKey {
+    typealias Value = Binding<Landmark>
+}
+
+extension FocusedValues {
+    var selectedLandmark: Binding<Landmark>? {
+        get { self[SelectedLandmarkKey.self] }
+        set { self[SelectedLandmarkKey.self] = newValue }
+    }
+}
