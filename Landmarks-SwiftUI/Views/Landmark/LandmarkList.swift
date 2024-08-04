@@ -10,9 +10,35 @@ import SwiftUI
 struct LandmarkList: View {
     
     @EnvironmentObject private var modelData: ModelData
+    @State private var selectedLandmark: Landmark?
+    
+    var index: Int? {
+        modelData.landmarks.firstIndex(where: { $0.id == selectedLandmark?.id })
+    }
+    
+    var body: some View {
+        if #available(macOS 13.0, *) {
+            NavigationSplitView {
+                NavigationLandmarkList(selectedLandmark: $selectedLandmark)
+            } detail: {
+                Text("Select a landmark")
+            }
+            .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
+        } else {
+            // Fallback on earlier versions
+            NavigationView {
+                NavigationLandmarkList(selectedLandmark: $selectedLandmark)
+            }
+            .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
+        }
+    }
+}
+
+struct NavigationLandmarkList: View {
+    @EnvironmentObject private var modelData: ModelData
     @State private var showFavoritesOnly: Bool = false
     @State private var filter = FilterCategory.all
-    @State private var selectedLandmark: Landmark?
+    @Binding var selectedLandmark: Landmark?
     
     enum FilterCategory: String, CaseIterable, Identifiable {
         case all = "All"
@@ -35,86 +61,39 @@ struct LandmarkList: View {
         return showFavoritesOnly ? "Favorite \(title)" : title
     }
     
-    var index: Int? {
-        modelData.landmarks.firstIndex(where: { $0.id == selectedLandmark?.id })
-    }
-    
+
     var body: some View {
-        if #available(macOS 13.0, *) {
-            NavigationSplitView {
-                List(selection: $selectedLandmark) {
-                    ForEach(filteredLandmarks) { landmark in
-                        NavigationLink {
-                            LandmarkDetail(landmark: landmark)
-                                .environmentObject(modelData)
-                        } label: {
-                            LandmarkRow(landmark: landmark)
-                        }
-                        .tag(landmark)
-                    }
+        List(selection: $selectedLandmark) {
+            ForEach(filteredLandmarks) { landmark in
+                NavigationLink {
+                    LandmarkDetail(landmark: landmark)
+                        .environmentObject(modelData)
+                } label: {
+                    LandmarkRow(landmark: landmark)
                 }
-                .animation(.default, value: filteredLandmarks)
-                .navigationTitle(title)
-                .frame(minWidth: 300)
-                .toolbar {
-                    ToolbarItem {
-                        Menu {
-                            Picker("Category", selection: $filter) {
-                                ForEach(FilterCategory.allCases) { category in
-                                    Text(category.rawValue).tag(category)
-                                }
-                            }
-                            .pickerStyle(.inline)
-                            
-                            Toggle(isOn: $showFavoritesOnly) {
-                                Text("Favorites only")
-                            }
-                        } label: {
-                            Label("Filter", systemImage: "slider.horizontal.3")
-                        }
-                    }
-                }
-            } detail: {
-                Text("Select a landmark")
+                .tag(landmark)
             }
-            .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
-        } else {
-            // Fallback on earlier versions
-            NavigationView {
-                List(selection: $selectedLandmark) {
-                    ForEach(filteredLandmarks) { landmark in
-                        NavigationLink {
-                            LandmarkDetail(landmark: landmark)
-                                .environmentObject(modelData)
-                        } label: {
-                            LandmarkRow(landmark: landmark)
-                        }
-                        .tag(landmark)
-                    }
-                }
-                .animation(.default, value: filteredLandmarks)
-                .navigationTitle(title)
-                .frame(minWidth: 300)
-                .toolbar {
-                    ToolbarItem {
-                        Menu {
-                            Picker("Category", selection: $filter) {
-                                ForEach(FilterCategory.allCases) { category in
-                                    Text(category.rawValue).tag(category)
-                                }
-                            }
-                            .pickerStyle(.inline)
-                            
-                            Toggle(isOn: $showFavoritesOnly) {
-                                Text("Favorites only")
-                            }
-                        } label: {
-                            Label("Filter", systemImage: "slider.horizontal.3")
+        }
+        .animation(.default, value: filteredLandmarks)
+        .navigationTitle(title)
+        .frame(minWidth: 300)
+        .toolbar {
+            ToolbarItem {
+                Menu {
+                    Picker("Category", selection: $filter) {
+                        ForEach(FilterCategory.allCases) { category in
+                            Text(category.rawValue).tag(category)
                         }
                     }
+                    .pickerStyle(.inline)
+                    
+                    Toggle(isOn: $showFavoritesOnly) {
+                        Text("Favorites only")
+                    }
+                } label: {
+                    Label("Filter", systemImage: "slider.horizontal.3")
                 }
             }
-            .focusedValue(\.selectedLandmark, $modelData.landmarks[index ?? 0])
         }
     }
 }
