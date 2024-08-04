@@ -12,6 +12,7 @@ struct LandmarkList: View {
     @EnvironmentObject private var modelData: ModelData
     @State private var showFavoritesOnly: Bool = false
     @State private var filter = FilterCategory.all
+    @State private var selectedLandmark: Landmark?
     
     enum FilterCategory: String, CaseIterable, Identifiable {
         case all = "All"
@@ -34,17 +35,22 @@ struct LandmarkList: View {
         return showFavoritesOnly ? "Favorite \(title)" : title
     }
     
+    var index: Int? {
+        modelData.landmarks.firstIndex(where: { $0.id == selectedLandmark?.id })
+    }
+    
     var body: some View {
         if #available(macOS 13.0, *) {
             NavigationSplitView {
-                List {
-                    ForEach(filteredLandmarks) { landmrak in
+                List(selection: $selectedLandmark) {
+                    ForEach(filteredLandmarks) { landmark in
                         NavigationLink {
-                            LandmarkDetail(landmark: landmrak)
+                            LandmarkDetail(landmark: landmark)
                                 .environmentObject(modelData)
                         } label: {
-                            LandmarkRow(landmark: landmrak)
+                            LandmarkRow(landmark: landmark)
                         }
+                        .tag(landmark)
                     }
                 }
                 .animation(.default, value: filteredLandmarks)
@@ -74,14 +80,15 @@ struct LandmarkList: View {
         } else {
             // Fallback on earlier versions
             NavigationView {
-                List {
-                    ForEach(filteredLandmarks) { landmrak in
+                List(selection: $selectedLandmark) {
+                    ForEach(filteredLandmarks) { landmark in
                         NavigationLink {
-                            LandmarkDetail(landmark: landmrak)
+                            LandmarkDetail(landmark: landmark)
                                 .environmentObject(modelData)
                         } label: {
-                            LandmarkRow(landmark: landmrak)
+                            LandmarkRow(landmark: landmark)
                         }
+                        .tag(landmark)
                     }
                 }
                 .animation(.default, value: filteredLandmarks)
